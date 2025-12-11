@@ -6,7 +6,7 @@ title: "The Pulse of the Market: Who Sets the Rhythm?"
 
 ---
 
-<div class="research-questions-box" markdown="1">
+
 
 
 Here we do the whole storytelling and introduction about the project, nice graphics (story related, check how the best projwect from last years look like) and research questions. TASK#1
@@ -15,6 +15,8 @@ __Motivations:__
 
 Financial markets are often portrayed as dominated by a handful of giants, but do the biggest companies truly drive the movements of their entire industry? This project investigates whether industry leaders systematically influence smaller peers within NASDAQ sectors. Using historical stock price data enriched with external metadata, we will group companies by industry, develop objective criteria to rank them, and analyze how information and volatility propagate across the market. Our methodology combines time-series modeling and Granger causality testing to detect leader-follower patterns in price dynamics. We will also assess how persistent these relationships are and how they evolve during major market events. Another component compares value-weighted ETFs with equally weighted portfolios to quantify whether performance is concentrated among large-cap leaders or broadly distributed. By highlighting where price discovery originates, from dominant firms or distributed behavior, this project offers insights into market power and the dynamics of information diffusion.
 
+
+<div class="research-questions-box" markdown="1">
 ## Research Questions
 
 1. **How do we define a "leader" and a "follower" in stock movements?** How to sectorize and hierarchize company?
