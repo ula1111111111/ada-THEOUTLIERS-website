@@ -183,7 +183,7 @@ function plotNetworkSector(sector) {
     .enter()
     .append('circle')
     .attr('r', 8)
-    .attr('fill', '#69b3a2')
+    .attr('fill', '#e60b78ff')
     .attr('stroke', '#333')
     .attr('stroke-width', 1.0)
     .call(d3.drag()
