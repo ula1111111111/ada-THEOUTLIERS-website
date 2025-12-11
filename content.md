@@ -4,7 +4,7 @@ layout: default
 
 <div class="notice--primary" markdown="1">
 
-## 📋 Research Questions
+##  Research Questions
 
 1. **How do we define a "leader" and a "follower" in stock movements?** How to sectorize and hierarchize company?
 2. **How can we detect directional influence between stocks within a sector?** (use daily return time series, detect this using lagged correlations or Granger causality)
