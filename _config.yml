@@ -2,10 +2,10 @@ theme: jekyll-theme-merlot
 title: ADA Template Website
 description: A template website for ADA
 show_downloads: True
-navigation:
-  - title: Home
-    url: /
-  - title: "The Pulse of the Market: Who Sets the Rhythm?"
-    url: content
-  - title: Example
-    url: example
+# navigation:
+#   - title: Home
+#     url: /
+#   - title: "The Pulse of the Market: Who Sets the Rhythm?"
+#     url: content
+#   - title: Example
+#     url: example
