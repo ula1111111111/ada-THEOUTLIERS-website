@@ -101,13 +101,13 @@ fetch(DATA_URL)
   Edge thickness reflects the strength of the relationship (correlation).
 </p>
 
-<label for="sectorSelect"><b>Select sector:</b></label>
-<select id="sectorSelect"></select>
+<label for="networkSectorSelect"><b>Select sector:</b></label>
+<select id="networkSectorSelect"></select>
 
 <div id="network-container" style="width:100%; max-width:900px; height:600px; border:1px solid #ccc; margin-top:10px;"></div>
 
 <script>
-const DATA_URL = "{{ '/assets/leadership_network.json' | relative_url }}";
+const DATA_URL_NETWORK = "{{ '/assets/leadership_network.json' | relative_url }}";
 
 let networkData = null;
 let svg, linkGroup, nodeGroup, labelGroup, simulation;
@@ -129,8 +129,8 @@ function initSvg() {
   labelGroup = svg.append('g').attr('class', 'labels');
 }
 
-function populateSectorSelect(sectors) {
-  const sel = document.getElementById('sectorSelect');
+function populateNetworkSectorSelect(sectors) {
+  const sel = document.getElementById('networkSectorSelect');
   sel.innerHTML = '';
   sectors.forEach(sec => {
     const opt = document.createElement('option');
@@ -140,7 +140,7 @@ function populateSectorSelect(sectors) {
   });
 }
 
-function plotSector(sector) {
+function plotNetworkSector(sector) {
   if (!networkData || !networkData[sector]) return;
 
   const data = networkData[sector];
@@ -237,7 +237,7 @@ function plotSector(sector) {
 }
 
 // Load JSON and initialize
-fetch(DATA_URL)
+fetch(DATA_URL_NETWORK)
   .then(resp => resp.json())
   .then(json => {
     networkData = json;
@@ -246,15 +246,16 @@ fetch(DATA_URL)
       console.warn('No sectors in leadership_network.json');
       return;
     }
-    populateSectorSelect(sectors);
-    plotSector(sectors[0]);
+    populateNetworkSectorSelect(sectors);
+    plotNetworkSector(sectors[0]);
 
-    document.getElementById('sectorSelect').addEventListener('change', (e) => {
-      plotSector(e.target.value);
+    document.getElementById('networkSectorSelect').addEventListener('change', (e) => {
+      plotNetworkSector(e.target.value);
     });
   })
   .catch(err => {
     console.error('Failed to load network data:', err);
   });
 </script>
+
 
