@@ -15,7 +15,6 @@
 <script>
 // Adjust this URL if needed (depends on where you saved the JSON file)
 const DATA_URL = "{{ '/assets/leadership_heatmap.json' | relative_url }}";
-
 let heatmapData = null;
 
 function populateSectorSelect(sectors) {
@@ -143,9 +142,13 @@ function populateNetworkSectorSelect(sectors) {
 function plotNetworkSector(sector) {
   if (!networkData || !networkData[sector]) return;
 
+  console.log("Plotting sector:", sector);
+
   const data = networkData[sector];
   const nodes = data.nodes.map(d => Object.assign({}, d)); // shallow copy
   const links = data.links.map(d => Object.assign({}, d));
+
+  console.log("Nodes:", nodes.length, "Links:", links.length);
 
   // Initialize SVG & groups
   initSvg();
@@ -162,7 +165,7 @@ function plotNetworkSector(sector) {
   const corrMin = d3.min(corrVals);
   const corrMax = d3.max(corrVals);
   const widthScale = d3.scaleLinear()
-    .domain([corrMin, corrMax])
+    .domain([corrMin || 0, corrMax || 1])  // avoid undefined if no links
     .range([1, 5]);
 
   // Draw links (edges)
@@ -240,6 +243,7 @@ function plotNetworkSector(sector) {
 fetch(DATA_URL_NETWORK)
   .then(resp => resp.json())
   .then(json => {
+    console.log("Loaded network data:", json);
     networkData = json;
     const sectors = Object.keys(networkData).sort();
     if (!sectors.length) {
@@ -257,5 +261,3 @@ fetch(DATA_URL_NETWORK)
     console.error('Failed to load network data:', err);
   });
 </script>
-
-
