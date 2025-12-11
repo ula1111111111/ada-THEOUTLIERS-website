@@ -3,15 +3,19 @@ layout: default
 title: "The Pulse of the Market: Who Sets the Rhythm?"
 ---
 
-__Motivations:__
-
-Financial markets are often portrayed as dominated by a handful of giants, but do the biggest companies truly drive the movements of their entire industry? This project investigates whether industry leaders systematically influence smaller peers within NASDAQ sectors. Using historical stock price data enriched with external metadata, we will group companies by industry, develop objective criteria to rank them, and analyze how information and volatility propagate across the market. Our methodology combines time-series modeling and Granger causality testing to detect leader-follower patterns in price dynamics. We will also assess how persistent these relationships are and how they evolve during major market events. Another component compares value-weighted ETFs with equally weighted portfolios to quantify whether performance is concentrated among large-cap leaders or broadly distributed. By highlighting where price discovery originates, from dominant firms or distributed behavior, this project offers insights into market power and the dynamics of information diffusion.
 
 ---
 
 <div class="research-questions-box" markdown="1">
 
-## 📋 Research Questions
+
+Here we do the whole storytelling and introduction about the project, nice graphics (story related, check how the best projwect from last years look like) and research questions. TASK#1
+
+__Motivations:__
+
+Financial markets are often portrayed as dominated by a handful of giants, but do the biggest companies truly drive the movements of their entire industry? This project investigates whether industry leaders systematically influence smaller peers within NASDAQ sectors. Using historical stock price data enriched with external metadata, we will group companies by industry, develop objective criteria to rank them, and analyze how information and volatility propagate across the market. Our methodology combines time-series modeling and Granger causality testing to detect leader-follower patterns in price dynamics. We will also assess how persistent these relationships are and how they evolve during major market events. Another component compares value-weighted ETFs with equally weighted portfolios to quantify whether performance is concentrated among large-cap leaders or broadly distributed. By highlighting where price discovery originates, from dominant firms or distributed behavior, this project offers insights into market power and the dynamics of information diffusion.
+
+## Research Questions
 
 1. **How do we define a "leader" and a "follower" in stock movements?** How to sectorize and hierarchize company?
 2. **How can we detect directional influence between stocks within a sector?** (use daily return time series, detect this using lagged correlations or Granger causality)
@@ -44,3 +48,20 @@ Financial markets are often portrayed as dominated by a handful of giants, but d
     line-height: 1.6;
 }
 </style>
+
+
+
+**Dataset 1: NASDAQ Company List**
+- Source: NASDAQ dataset (`companylist.csv`)
+- Contents: Company information only (no ETFs)
+- Key fields: Symbol, Name, MarketCap, Sector, Industry, IPO year
+- Purpose: Provides sector classification and market capitalization for companies
+
+**Dataset 2: Stock Market Dataset**
+- Source: Kaggle Stock Market Dataset
+- Contains: Stocks, ETFs, and symbols metadata
+- Components:
+  - **`stocks/` folder**: Individual CSV files for each stock with daily price data (OHLCV + Adjusted Close)
+  - **`etfs/` folder**: Individual CSV files for each ETF with daily price data (OHLCV + Adjusted Close)
+  - **`symbols_valid_meta.csv`**: Metadata for all securities (stocks AND ETFs), including ETF flags, exchange listings, security names
+- Purpose: Provides historical price data and security type classification (stock vs ETF)

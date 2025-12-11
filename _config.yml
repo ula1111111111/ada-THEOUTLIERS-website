@@ -1,13 +1,20 @@
 theme: jekyll-theme-minimal
-title: ADA Template Website
-description: A template website for ADA
+title: ADA Project THEOUTLIERS
+description: A website for ADA Project TheOutliers storytelling and analysis.
+author: TheOutliers
 show_downloads: True
 navigation:
   - title: Home
     url: /
   - title: "The Pulse of the Market: Who Sets the Rhythm?"
     url: content
+  - title: Exploring The Market 
+    url: exploring
+  - title: Hierarchizing Market Participants
+    url: hierarchizing
   - title: Analysis of Stock Leadership
     url: analysis
+  - title: ETFs vs Equal Weighted Portfolios
+    url: etfsvsequallyweighted
   - title: Example
     url: example

@@ -1,3 +1,7 @@
+---
+layout: default
+title: "Interactive Analysis: Sector Leadership Heatmaps and Networks"
+---
 <!-- Load Plotly from CDN -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
