@@ -43,9 +43,9 @@ function plotSector(sector) {
     type: 'heatmap',
     hoverongaps: false,
     colorscale: [
-    [0, '#fde2e4'],
-    [0.5, '#f9bec7'],
-    [1, '#f582ae']
+    [0, '#fde2e4ff'],
+    [0.5, '#f582ae'],
+    [1, '#ea1792ff']
     ],
     colorbar: { title: 'Correlation' }
   };
@@ -173,7 +173,7 @@ function plotNetworkSector(sector) {
     .data(links)
     .enter()
     .append('line')
-    .attr('stroke', '#999')
+    .attr('stroke', '#b039cadc')
     .attr('stroke-opacity', 0.7)
     .attr('stroke-width', d => widthScale(Math.abs(d.corr)));
 
