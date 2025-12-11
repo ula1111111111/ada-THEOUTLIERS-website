@@ -1,4 +1,4 @@
-theme: minimal-mistakes-jekyll
+theme: jekyll-theme-minimal
 title: ADA Template Website
 description: A template website for ADA
 show_downloads: True
