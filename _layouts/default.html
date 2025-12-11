@@ -3,59 +3,159 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link rel="icon" type="image/png"  href="assets/img/favicon.png">
-    <title>{{ site.title | default: site.github.repository_name }} by {{ site.github.owner_name }}</title>
+    <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}">
+    <title>{{ page.title | default: site.title }} - {{ site.title | default: site.github.repository_name }}</title>
 
+    <!-- Google fonts (optional, can remove if you want) -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Main site CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
+
+    <!-- Simple layout styling for top nav + centered content -->
+    <style>
+      :root {
+        --accent: #ff4d88;
+        --accent-soft: #ffe5ec;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f7f7f9;
+      }
+
+      .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.5rem;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      .nav-brand h1 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-item {
+        text-decoration: none;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        color: #444;
+      }
+
+      .nav-item:hover {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .nav-item.active {
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .page-container {
+        max-width: 1100px;
+        margin: 1.5rem auto 3rem auto;
+        padding: 0 1rem;
+      }
+
+      .page-header {
+        margin-bottom: 1.5rem;
+      }
+
+      .page-header h1 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.8rem;
+      }
+
+      .page-header p {
+        margin: 0;
+        color: #555;
+      }
+
+      .page-content {
+        background: #ffffff;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 0 18px rgba(0,0,0,0.03);
+      }
+
+      footer {
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        color: #777;
+        text-align: center;
+      }
+    </style>
+
     <meta name="viewport" content="width=device-width">
+
+    {% if site.google_analytics %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{ site.google_analytics }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
+    <!-- Top navigation -->
+    <nav class="top-nav">
+      <div class="nav-brand">
         <h1>{{ site.title | default: site.github.repository_name }}</h1>
+      </div>
+      <div class="nav-links">
+        {% for nav in site.navigation %}
+          {% assign nav_url = nav.url | relative_url %}
+          {% assign current = page.url | relative_url %}
+          <a href="{{ nav_url }}"
+             class="nav-item{% if nav_url == current or (nav.url == '/' and current == '/index.html') %} active{% endif %}">
+            {{ nav.title }}
+          </a>
+        {% endfor %}
+      </div>
+    </nav>
+
+    <!-- Main page content -->
+    <div class="page-container">
+      <div class="page-header">
+        <h1>{{ page.title | default: site.title }}</h1>
         <p>{{ site.description | default: site.github.project_tagline }}</p>
+      </div>
 
-        <table>
-          {% for nav in site.navigation %}
-            {% if nav.url contains "://" %}
-              <tr><th><a href="{{ nav.url }}">{{ nav.title }}</a></th></tr>
-            {% else %}
-              <tr><th><a href="{{ nav.url | relative_url }}">{{ nav.title }}</a></th></tr>
-            {% endif %}
-          {% endfor %}
-        </table>
+      <div class="page-content">
+        {{ content }}
+      </div>
 
-        {% if site.show_downloads %}
-          <ul>
-            <li><a href="{{ site.github.zip_url }}">Download <strong>ZIP File</strong></a></li>
-            <li><a href="{{ site.github.tar_url }}">Download <strong>TAR Ball</strong></a></li>
-            <li><a href="{{ site.github.repository_url }}">View On <strong>GitHub</strong></a></li>
-          </ul>
-        {% endif %}
-      </header>
-      <section>
-
-      {{ content }}
-
-      </section>
       <footer>
         {% if site.github.is_project_page %}
-        <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+          <p>
+            This project is maintained by
+            <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.
+          </p>
         {% endif %}
       </footer>
     </div>
+
     <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
-
-
-  {% if site.google_analytics %}
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', '{{ site.google_analytics }}', 'auto');
-        ga('send', 'pageview');
-    </script>
-  {% endif %}
   </body>
 </html>
