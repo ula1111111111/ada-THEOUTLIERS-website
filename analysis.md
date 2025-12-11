@@ -43,6 +43,11 @@ function plotSector(sector) {
     y: leaders,
     type: 'heatmap',
     hoverongaps: false,
+    colorscale: [
+    [0, '#fde2e4'],
+    [0.5, '#f9bec7'],
+    [1, '#f582ae']
+    ],
     colorbar: { title: 'Correlation' }
   };
 
