@@ -261,3 +261,13 @@ fetch(DATA_URL_NETWORK)
     console.error('Failed to load network data:', err);
   });
 </script>
+
+<div style="margin-top:15px; padding:10px; border-left:4px solid #ff4d88; background:#ffe5ec;">
+  <b>Legend:</b><br>
+  • <b>Nodes</b> represent companies in the selected sector.<br>
+  • <b>Arrows</b> point from the <b>Leader → Follower</b> stock.<br>
+  • <b>Thickness of arrows</b> represents the strength of the statistical link
+    (stronger cross-correlation at the optimal positive lag).<br>
+  • <b>Hover</b> over a node to see the company ticker.<br>
+  • <b>Drag</b> nodes to explore the structure of the sector.
+</div>
