@@ -9,3 +9,7 @@ show_downloads: True
 #     url: content
 #   - title: Example
 #     url: example
+header_pages:
+  - index.md
+  - content.md
+  - example.md
